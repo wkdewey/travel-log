@@ -1,1 +1,14 @@
 <h1>Insert the form to edit an instance of your model here.</h1>
+<form action='/users/<%= @user.id %>' method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
+<label for="name">Edit Name:
+<input type="text" name="name" id="name" value="<%= @user.name %>"></input><br>
+<label for="hometown">Edit Hometown:
+<input type="text" name="hometown" id="hometown" value="<%= @user.hometown %>"></input><br>
+<label for="password">Edit Password:
+<input type="text" name="password" id="password" value="<%= @user.password %>"></input><br>
+<input type="submit" name="submit" id="submit">
+
+
+</form>
+<a href="/logout">Log out </a>
