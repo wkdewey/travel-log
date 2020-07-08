@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
   # DELETE: /users/5/delete
   delete "/users/:id" do
-    
+    user = User.find_by(id: params[:id])
     if logged_in? && user = current_user  
       user.destroy
       session.clear
