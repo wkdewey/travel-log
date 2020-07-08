@@ -21,8 +21,8 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  get "/logout"
-    erb: logout
+  get "/logout" do
+    erb :logout
   end
 
   post '/signup' do
@@ -33,6 +33,11 @@ class ApplicationController < Sinatra::Base
     else
       redirect "/signup"
     end
+  end
+
+  post '/logout' do
+    session.clear
+    redirect "/"
   end
 
 
