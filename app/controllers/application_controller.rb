@@ -15,7 +15,7 @@ class ApplicationController < Sinatra::Base
 
   get "/signup" do
     if logged_in?
-      redirect "/places"
+      redirect "/users"
     else
       erb :signup
     end
@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if logged_in?
-      redirect "/places"
+      redirect "/users"
     else
       erb :login
     end
@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
     user = User.new(:name => params[:name], :hometown => params[:hometown], :password => params[:password])
     if user.save
       session[:user_id] = user.id
-      redirect "/places"
+      redirect "/users"
     else
       redirect "/signup"
     end
@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
     user = User.find_by(:name => params[:name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/places"
+      redirect "/users"
     else
       redirect "/login"
     end
