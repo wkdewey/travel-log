@@ -28,6 +28,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if logged_in?
+      flash[:error] = "You are already logged in"
       redirect "/users"
     else
       erb :login
@@ -40,6 +41,7 @@ class ApplicationController < Sinatra::Base
       session[:user_id] = user.id
       redirect "/users"
     else
+      flash[:error] = "You must fill out all fields and have a unique username. Please try again"
       redirect "/signup"
     end
   end
@@ -47,9 +49,11 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     user = User.find_by(:name => params[:name])
     if user && user.authenticate(params[:password])
+      
       session[:user_id] = user.id
       redirect "/users"
     else
+      flash[:error] = "User name and/or password is invalid"
       redirect "/login"
     end
   end
