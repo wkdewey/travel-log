@@ -56,8 +56,11 @@ class PlacesController < ApplicationController
     place.name = params[:name]
     place.city = params[:city]
     place.country = params[:country]
-    place.save
-    redirect "/places/#{place.id}"
+    if place.save
+      redirect "/places/#{place.id}"
+    else
+      redirect "/places/#{place.id}/edit"
+    end
   end
 
   # DELETE: /places/5/delete
