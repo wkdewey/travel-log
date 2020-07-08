@@ -7,24 +7,25 @@ class UsersController < ApplicationController
     erb :"/users/index"
   end
 
-  # GET: /users/new
+  # GET: /users/new. Creating a new user can be handled by logging out and signing up again.
   get "/users/new" do
-    erb :"/users/new.html"
+    redirect "/logout"
   end
 
-  # POST: /users
-  post "/users" do
-    redirect "/users"
-  end
+  # POST: /users This route is not applicable to this program
+  # post "/users" do
+  #   redirect "/users"
+  # end
 
-  # GET: /users/5
+  # GET: /users/:id
   get "/users/:id" do
-    erb :"/users/show.html"
+    @user = User.find_by(id: params[:id])
+    erb :"/users/show"
   end
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
-    erb :"/users/edit.html"
+    erb :"/users/edit"
   end
 
   # PATCH: /users/5
