@@ -1,1 +1,9 @@
-<h1>This is the Model's index page.</h1>
+<h1>View all places</h1>
+<ol>
+<% @places.each do |place| %>
+  <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>
+<% end %>
+</ol>
+<br>
+<a href="/places/new">Create a new place</a>
+<a href="/logout">Log out </a>

@@ -2,7 +2,8 @@ class PlacesController < ApplicationController
 
   # GET: /places
   get "/places" do
-    erb :"/places/index.html"
+    @places = Place.all
+    erb :"/places/index"
   end
 
   # GET: /places/new
