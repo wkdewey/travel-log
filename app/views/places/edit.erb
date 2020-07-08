@@ -1,1 +1,18 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit place</h1>
+<form action='/places/<%= @place.id %>' method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
+<label for="name">Edit Name:
+<input type="text" name="name" id="name" value="<%= @place.name %>"></input><br>
+<label for="hometown">Edit Hometown:
+<input type="text" name="city" id="city" value="<%= @place.city %>"></input><br>
+<label for="password">Edit Password:
+<input type="text" name="country" id="country" value="<%= @place.country %>"></input><br>
+<input type="submit" name="submit" id="submit">
+
+
+</form>
+<form method ="POST" action="/places/<%= @place.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" id="delete" value="Delete place">
+</form>
+<a href="/logout">Log out </a>

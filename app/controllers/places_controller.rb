@@ -24,7 +24,9 @@ class PlacesController < ApplicationController
 
   # GET: /places/5/edit
   get "/places/:id/edit" do
-    erb :"/places/edit.html"
+    @place = Place.find_by(id: params[:id])
+    binding.pry
+    erb :"/places/edit"
   end
 
   # PATCH: /places/5
