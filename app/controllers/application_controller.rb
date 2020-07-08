@@ -21,6 +21,17 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  post '/signup' do
+    user = User.new(:name => params[:name], :hometown => params[:hometown], :password => params[:password])
+    if user.save
+      session[:user_id] = user.id
+      binding.pry
+      redirect "/places"
+    else
+      redirect "/signup"
+    end
+  end
+
   helpers do
     def logged_in?
       !!session[:user_id]

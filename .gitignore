@@ -38,10 +38,12 @@ jspm_packages
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
+/db/development.sqlite
+
 
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
 
-sinatra-project.code-workspace
+/sinatra-project.code-workspace
