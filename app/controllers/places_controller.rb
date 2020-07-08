@@ -35,7 +35,9 @@ class PlacesController < ApplicationController
   end
 
   # DELETE: /places/5/delete
-  delete "/places/:id/delete" do
+  delete "/places/:id" do
+    place = Place.find_by(id: params[:id])
+    place.destroy
     redirect "/places"
   end
 end
