@@ -30,13 +30,17 @@ class PlacesController < ApplicationController
   # GET: /places/5/edit
   get "/places/:id/edit" do
     @place = Place.find_by(id: params[:id])
-    binding.pry
     erb :"/places/edit"
   end
 
   # PATCH: /places/5
   patch "/places/:id" do
-    redirect "/places/:id"
+    place = Place.find_by(id: params[:id])
+    place.name = params[:name]
+    place.city = params[:city]
+    place.country = params[:country]
+    place.save
+    redirect "/places/#{place.id}"
   end
 
   # DELETE: /places/5/delete
