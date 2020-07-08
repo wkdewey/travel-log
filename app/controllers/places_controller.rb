@@ -31,8 +31,9 @@ class PlacesController < ApplicationController
 
   # GET: /places/5/edit
   get "/places/:id/edit" do
-    if logged_in?
-      @place = Place.find_by(id: params[:id])
+    @place = Place.find_by(id: params[:id])
+    if logged_in? && current_user.id == @place.user_id
+      
       erb :"/places/edit"
     else
       redirect "/login"
@@ -61,8 +62,8 @@ class PlacesController < ApplicationController
 
   # DELETE: /places/5/delete
   delete "/places/:id" do
-    if logged_in?
-      place = Place.find_by(id: params[:id])
+    place = Place.find_by(id: params[:id])
+    if logged_in? && current_user.id == place.user_id
       place.destroy
       redirect "/places"
     end
