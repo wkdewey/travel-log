@@ -31,7 +31,12 @@ class UsersController < ApplicationController
 
   # PATCH: /users/5
   patch "/users/:id" do
-    redirect "/users/:id"
+    user = User.find_by(id: params[:id])
+    user.name = params[:name]
+    user.hometown = params[:hometown]
+    user.password = params[:password]
+    user.save
+    redirect "/users/#{user.id}"
   end
 
   # DELETE: /users/5/delete
