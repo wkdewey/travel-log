@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect "/places"
     else
-      
+      erb :signup
     end
   end
 
