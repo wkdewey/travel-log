@@ -8,7 +8,7 @@ class PlacesController < ApplicationController
 
   # GET: /places/new
   get "/places/new" do
-    erb :"/places/new.html"
+    erb :"/places/new"
   end
 
   # POST: /places
