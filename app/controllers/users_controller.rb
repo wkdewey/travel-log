@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       @users = User.all
       erb :"/users/index"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
@@ -14,9 +15,10 @@ class UsersController < ApplicationController
   # GET: /users/new. Creating a new user can be handled by logging out and signing up again.
   get "/users/new" do
     if logged_in?
+      flash[:message] = "Select 'Sign up' to create a new user account"
       redirect "/logout"
     else
-      redirect "/login"
+      redirect "/signup"
     end
   end
 
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
       erb :"/users/show"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
@@ -41,6 +44,7 @@ class UsersController < ApplicationController
     if logged_in? && current_user == @user  
       erb :"/users/edit"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
