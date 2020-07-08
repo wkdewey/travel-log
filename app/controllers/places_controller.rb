@@ -6,6 +6,7 @@ class PlacesController < ApplicationController
       @places = Place.all
       erb :"/places/index"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
@@ -15,6 +16,7 @@ class PlacesController < ApplicationController
     if logged_in?
       erb :"/places/new"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
@@ -25,6 +27,7 @@ class PlacesController < ApplicationController
       @place = Place.find_by(id: params[:id])
       erb :"/places/show"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
@@ -36,6 +39,7 @@ class PlacesController < ApplicationController
       
       erb :"/places/edit"
     else
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
     end
   end
@@ -46,6 +50,7 @@ class PlacesController < ApplicationController
     if place.save
       redirect "/places"
     else
+      flash[:error] = "All fields must be filled out to save a new place"
       redirect "/places/new"
     end
   end
@@ -59,6 +64,7 @@ class PlacesController < ApplicationController
     if place.save
       redirect "/places/#{place.id}"
     else
+      flash[:error] = "All fields must be filled out to save changes"
       redirect "/places/#{place.id}/edit"
     end
   end
