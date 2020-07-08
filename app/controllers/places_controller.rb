@@ -13,7 +13,12 @@ class PlacesController < ApplicationController
 
   # POST: /places
   post "/places" do
-    redirect "/places"
+    place = Place.new(name: params[:name], city: params[:city], country: params[:country], user_id: current_user.id)
+    if place.save
+      redirect "/places"
+    else
+      redirect "/places/new"
+    end
   end
 
   # GET: /places/5
