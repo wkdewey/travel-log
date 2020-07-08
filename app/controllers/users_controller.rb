@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     if logged_in? && current_user == @user  
       erb :"/users/edit"
     else
-      flash[:error] = "You must log in to see that page"
+      flash[:error] = "You must log in to see that page, and you can only edit your own info"
       redirect "/login"
     end
   end

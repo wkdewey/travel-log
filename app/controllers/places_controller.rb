@@ -34,12 +34,13 @@ class PlacesController < ApplicationController
 
   # GET: /places/5/edit
   get "/places/:id/edit" do
+    #TODO separate the errors
     @place = Place.find_by(id: params[:id])
     if logged_in? && current_user.id == @place.user_id
       
       erb :"/places/edit"
     else
-      flash[:error] = "You must log in to see that page"
+      flash[:error] = "You must be logged in, and can only edit places that you own"
       redirect "/login"
     end
   end

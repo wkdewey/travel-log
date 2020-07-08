@@ -16,6 +16,7 @@ class ApplicationController < Sinatra::Base
 
   get "/signup" do
     if logged_in?
+      flash[:error] = "You are already logged in"
       redirect "/users"
     else
       erb :signup
