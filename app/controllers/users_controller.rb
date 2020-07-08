@@ -2,7 +2,9 @@ class UsersController < ApplicationController
 
   # GET: /users
   get "/users" do
-    erb :"/users/index.html"
+    @current_user = current_user
+    @users = User.all
+    erb :"/users/index"
   end
 
   # GET: /users/new
