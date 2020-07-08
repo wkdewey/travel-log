@@ -1,8 +1,18 @@
 <h1>Welcome, <%= @current_user.name %></h1>
 <h2>Your places</h2>
+<ol>
 <% @current_user.places.each do |place| %>
   <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>
 <% end %>
+</ol>
+<br>
+<h2>All users</h2>
+<ul>
+<% @users.each do |user| %>
+  <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>
+<% end %>
+</ul>
+<br>
 <a href="/users/<%= current_user.id %>View your profile</a>
 <a href="/users/<%= current_user.id %>/edit">Edit your profile</a>
 <a href="/logout">Log out </a>
