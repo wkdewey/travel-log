@@ -1,3 +1,10 @@
 <h1><%= @place.name %></h1>
 <p>City: <%= @place.city %></p>
 <p>Country: <%= @place.country %></p>
+<p>User(s) who visited: <%= User.find_by(id: @place.id).name %></p>
+<a href="places/<%= @place.id %>/edit">Edit place</a>
+<form method ="POST" action="/place/<%= @place.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" id="delete" value="Delete Place">
+</form>
+<a href="/logout">Log out </a>
