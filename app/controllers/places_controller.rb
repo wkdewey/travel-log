@@ -2,16 +2,44 @@ class PlacesController < ApplicationController
 
   # GET: /places
   get "/places" do
-    @places = Place.all
-    erb :"/places/index"
+    if logged_in?
+      @places = Place.all
+      erb :"/places/index"
+    else
+      redirect "/login"
+    end
   end
 
   # GET: /places/new
   get "/places/new" do
-    erb :"/places/new"
+    if logged_in?
+      erb :"/places/new"
+    else
+      redirect "/login"
+    end
   end
 
+# GET: /places/5
+  get "/places/:id" do
+    if logged_in?
+      @place = Place.find_by(id: params[:id])
+      erb :"/places/show"
+    else
+      redirect "/login"
+    end
+  end
+
+  # GET: /places/5/edit
+  get "/places/:id/edit" do
+    if logged_in?
+      @place = Place.find_by(id: params[:id])
+      erb :"/places/edit"
+    else
+      redirect "/login"
+    end
+  end
   # POST: /places
+
   post "/places" do
     place = Place.new(name: params[:name], city: params[:city], country: params[:country], user_id: current_user.id)
     if place.save
@@ -19,18 +47,6 @@ class PlacesController < ApplicationController
     else
       redirect "/places/new"
     end
-  end
-
-  # GET: /places/5
-  get "/places/:id" do
-    @place = Place.find_by(id: params[:id])
-    erb :"/places/show"
-  end
-
-  # GET: /places/5/edit
-  get "/places/:id/edit" do
-    @place = Place.find_by(id: params[:id])
-    erb :"/places/edit"
   end
 
   # PATCH: /places/5
@@ -45,8 +61,10 @@ class PlacesController < ApplicationController
 
   # DELETE: /places/5/delete
   delete "/places/:id" do
-    place = Place.find_by(id: params[:id])
-    place.destroy
-    redirect "/places"
+    if logged_in?
+      place = Place.find_by(id: params[:id])
+      place.destroy
+      redirect "/places"
+    end
   end
 end
