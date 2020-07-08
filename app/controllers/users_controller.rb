@@ -37,8 +37,8 @@ class UsersController < ApplicationController
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
-    if logged_in?
-      @user = User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
+    if logged_in? && current_user == @user  
       erb :"/users/edit"
     else
       redirect "/login"
@@ -57,8 +57,8 @@ class UsersController < ApplicationController
 
   # DELETE: /users/5/delete
   delete "/users/:id" do
-    if logged_in?
-      user = User.find_by(id: params[:id])
+    
+    if logged_in? && user = current_user  
       user.destroy
       session.clear
       redirect "/"
