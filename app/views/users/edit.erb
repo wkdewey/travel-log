@@ -11,4 +11,8 @@
 
 
 </form>
+<form method ="POST" action="/users/<%= @user.id %>">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" id="delete" value="Delete User">
+</form>
 <a href="/logout">Log out </a>
