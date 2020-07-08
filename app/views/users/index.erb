@@ -3,4 +3,6 @@
 <% @current_user.places.each do |place| %>
   <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>
 <% end %>
+<a href="/users/<%= current_user.id %>View your profile</a>
+<a href="/users/<%= current_user.id %>/edit">Edit your profile</a>
 <a href="/logout">Log out </a>
