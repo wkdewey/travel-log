@@ -18,7 +18,8 @@ class PlacesController < ApplicationController
 
   # GET: /places/5
   get "/places/:id" do
-    erb :"/places/show.html"
+    @place = Place.find_by(id: params[:id])
+    erb :"/places/show"
   end
 
   # GET: /places/5/edit
