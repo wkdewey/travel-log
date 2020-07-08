@@ -66,6 +66,8 @@ class PlacesController < ApplicationController
     if logged_in? && current_user.id == place.user_id
       place.destroy
       redirect "/places"
+    else
+      redirect "/login"
     end
   end
 end
