@@ -25,6 +25,14 @@ class ApplicationController < Sinatra::Base
     erb :logout
   end
 
+  get '/login' do
+    if logged_in?
+      redirect "/places"
+    else
+      erb :login
+    end
+  end
+
   post '/signup' do
     user = User.new(:name => params[:name], :hometown => params[:hometown], :password => params[:password])
     if user.save
