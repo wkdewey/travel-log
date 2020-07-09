@@ -72,6 +72,11 @@ class ApplicationController < Sinatra::Base
     def current_user
       User.find_by(:id => session[:user_id])
     end
+
+    def login_error
+      flash[:error] = "You must log in to see that page"
+      redirect "/login"
+    end
   end
 
 end

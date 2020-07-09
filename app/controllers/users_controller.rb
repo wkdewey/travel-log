@@ -7,8 +7,7 @@ class UsersController < ApplicationController
       @users = User.all
       erb :"/users/index"
     else
-      flash[:error] = "You must log in to see that page"
-      redirect "/login"
+      login_error
     end
   end
 
@@ -33,8 +32,7 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
       erb :"/users/show"
     else
-      flash[:error] = "You must log in to see that page"
-      redirect "/login"
+      login_error
     end
   end
 
@@ -42,11 +40,10 @@ class UsersController < ApplicationController
   get "/users/:id/edit" do
     @user = User.find_by(id: params[:id])
     if !logged_in?
-      flash[:error] = "You must log in to see that page"
-      redirect "/login"
+      login_error
     elsif current_user !== @user  
       flash[:error] = "You can only edit your own profile"
-      redirect "/login"
+      redirect "/users"
     else
       erb :"/users/edit"
     end

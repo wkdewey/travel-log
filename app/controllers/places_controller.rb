@@ -6,8 +6,7 @@ class PlacesController < ApplicationController
       @places = Place.all
       erb :"/places/index"
     else
-      flash[:error] = "You must log in to see that page"
-      redirect "/login"
+      login_error
     end
   end
 
@@ -16,8 +15,7 @@ class PlacesController < ApplicationController
     if logged_in?
       erb :"/places/new"
     else
-      flash[:error] = "You must log in to see that page"
-      redirect "/login"
+      login_error
     end
   end
 
@@ -27,8 +25,7 @@ class PlacesController < ApplicationController
       @place = Place.find_by(id: params[:id])
       erb :"/places/show"
     else
-      flash[:error] = "You must log in to see that page"
-      redirect "/login"
+      login_error
     end
   end
 
@@ -37,10 +34,10 @@ class PlacesController < ApplicationController
     #TODO separate the errors
     @place = Place.find_by(id: params[:id])
     if !logged_in?
-      flash[:error] = "You must log in to see that page" 
-      redirect "/login"
+      login_error
     elsif current_user.id !== @place.user_id
       flash[:error] = "You can only edit places that you created"
+      redirect "/places/:id"
     else
       erb :"/places/edit"
     else
@@ -79,8 +76,6 @@ class PlacesController < ApplicationController
     if current_user.id == place.user_id
       place.destroy
       redirect "/places"
-    else
-      redirect "/login"
     end
   end
 end
