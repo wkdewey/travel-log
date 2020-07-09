@@ -35,13 +35,11 @@ class PlacesController < ApplicationController
     @place = Place.find_by(id: params[:id])
     if !logged_in?
       login_error
-    elsif current_user.id !== @place.user_id
+    elsif current_user.id != @place.user_id
       flash[:error] = "You can only edit places that you created"
-      redirect "/places/:id"
+      redirect "/places/#{@place.id}"
     else
       erb :"/places/edit"
-    else
-      
     end
   end
   # POST: /places

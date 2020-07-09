@@ -1,3 +1,4 @@
+<% binding.pry %>
 <h1>Edit place</h1>
 <form action='/places/<%= @place.id %>' method="post">
 <input id="hidden" type="hidden" name="_method" value="patch">
@@ -15,4 +16,3 @@
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" id="delete" value="Delete place">
 </form>
-<a href="/logout">Log out </a>

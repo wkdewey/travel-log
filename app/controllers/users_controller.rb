@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     if !logged_in?
       login_error
-    elsif current_user !== @user  
+    elsif current_user != @user  
       flash[:error] = "You can only edit your own profile"
       redirect "/users"
     else
