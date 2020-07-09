@@ -16,8 +16,7 @@ class ApplicationController < Sinatra::Base
 
   get "/signup" do
     if logged_in?
-      flash[:error] = "You are already logged in"
-      redirect "/users"
+      already_logged_in
     else
       erb :signup
     end
@@ -29,8 +28,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
     if logged_in?
-      flash[:error] = "You are already logged in"
-      redirect "/users"
+      already_logged_in
     else
       erb :login
     end
@@ -39,8 +37,7 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     user = User.new(:name => params[:name], :hometown => params[:hometown], :password => params[:password])
     if user.save
-      session[:user_id] = user.id
-      redirect "/users"
+      start_session
     else
       flash[:error] = "You must fill out all fields and have a unique username. Please try again"
       redirect "/signup"
@@ -50,9 +47,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     user = User.find_by(:name => params[:name])
     if user && user.authenticate(params[:password])
-      
-      session[:user_id] = user.id
-      redirect "/users"
+      start_session
     else
       flash[:error] = "User name and/or password is invalid"
       redirect "/login"
@@ -76,6 +71,16 @@ class ApplicationController < Sinatra::Base
     def login_error
       flash[:error] = "You must log in to see that page"
       redirect "/login"
+    end
+
+    def already_logged_in
+      flash[:error] = "You are already logged in"
+      redirect "/users"
+    end
+
+    def start_session
+      session[:user_id] = user.id
+      redirect "/users"
     end
   end
 
