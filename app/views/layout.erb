@@ -17,14 +17,16 @@
     <div class="wrapper">
         <% if flash[:error] %>
           <h3><%= flash[:error] %></h3>
+        <% elsif flash[:message] %>
+          <h3><%= flash[:message] %></h3>
         <% end %>
         <%= yield %>
         <% if logged_in? %>
           <a href="/places/new">Create a new place</a>
           <a href="/places">View all places</a>
-          <a href="/users">View all users</a>
+          <a href="/users">View all users</a><br>
           <a href="/users/<%= current_user.id %>">View your profile</a>
-          <a href="/users/<%= current_user.id %>/edit">Edit your profile</a>
+          <a href="/users/<%= current_user.id %>/edit">Edit your profile</a><br>
           <a href="/logout">Log out </a>
         <% end %>
 
