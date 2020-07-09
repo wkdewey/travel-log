@@ -1,5 +1,12 @@
 <h1>Profile</h1>
-<h2>Name: <%= @user.name %></h2>
-<h2>Hometown: <%=@user.hometown %></h2>
+<h3>Name: <%= @user.name %></h2>
+<h3>Hometown: <%=@user.hometown %></h2>
+<h3>Places visited by <%= @user.name %></h2>
+<ol>
+<% @user.places.each do |place| %>
+  <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>
+<% end %>
+</ol>
+<br>
 <a href="/users">See all users</a>
 <a href="/logout">Log out </a>
