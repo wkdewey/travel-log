@@ -36,12 +36,15 @@ class PlacesController < ApplicationController
   get "/places/:id/edit" do
     #TODO separate the errors
     @place = Place.find_by(id: params[:id])
-    if logged_in? && current_user.id == @place.user_id
-      
+    if !logged_in?
+      flash[:error] = "You must log in to see that page" 
+      redirect "/login"
+    elsif current_user.id !== @place.user_id
+      flash[:error] = "You can only edit places that you created"
+    else
       erb :"/places/edit"
     else
-      flash[:error] = "You must be logged in, and can only edit places that you own"
-      redirect "/login"
+      
     end
   end
   # POST: /places
@@ -73,7 +76,7 @@ class PlacesController < ApplicationController
   # DELETE: /places/5/delete
   delete "/places/:id" do
     place = Place.find_by(id: params[:id])
-    if logged_in? && current_user.id == place.user_id
+    if current_user.id == place.user_id
       place.destroy
       redirect "/places"
     else

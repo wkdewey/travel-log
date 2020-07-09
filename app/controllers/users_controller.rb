@@ -41,11 +41,14 @@ class UsersController < ApplicationController
   # GET: /users/5/edit
   get "/users/:id/edit" do
     @user = User.find_by(id: params[:id])
-    if logged_in? && current_user == @user  
-      erb :"/users/edit"
-    else
-      flash[:error] = "You must log in to see that page, and you can only edit your own info"
+    if !logged_in?
+      flash[:error] = "You must log in to see that page"
       redirect "/login"
+    elsif current_user !== @user  
+      flash[:error] = "You can only edit your own profile"
+      redirect "/login"
+    else
+      erb :"/users/edit"
     end
   end
 
