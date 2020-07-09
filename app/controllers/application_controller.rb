@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     user = User.new(:name => params[:name], :hometown => params[:hometown], :password => params[:password])
     if user.save
-      start_session
+      start_session(user)
     else
       flash[:error] = "You must fill out all fields and have a unique username. Please try again"
       redirect "/signup"
@@ -47,7 +47,7 @@ class ApplicationController < Sinatra::Base
   post '/login' do
     user = User.find_by(:name => params[:name])
     if user && user.authenticate(params[:password])
-      start_session
+      start_session(user)
     else
       flash[:error] = "User name and/or password is invalid"
       redirect "/login"
@@ -78,7 +78,7 @@ class ApplicationController < Sinatra::Base
       redirect "/users"
     end
 
-    def start_session
+    def start_session(user)
       session[:user_id] = user.id
       redirect "/users"
     end
