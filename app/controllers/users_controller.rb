@@ -55,7 +55,8 @@ class UsersController < ApplicationController
     user = User.find_by(id: params[:id])
     user.name = params[:name]
     user.hometown = params[:hometown]
-    user.password = params[:password]
+    user.place_ids << params[:user][:place_ids]
+    binding.pry
     user.save
     redirect "/users/#{user.id}"
   end
