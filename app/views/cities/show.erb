@@ -1,5 +1,5 @@
 <h1><%= @city.name %>, <%= @city.country.name %></h1>
-<h3>Cities</h3>
+<h3>Places</h3>
 <ol>
 <% @city.places.each do |place| %>
   <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>
