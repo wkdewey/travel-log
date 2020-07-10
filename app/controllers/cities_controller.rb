@@ -2,7 +2,8 @@ class CitiesController < ApplicationController
 
   # GET: /cities
   get "/cities" do
-    erb :"/cities/index.html"
+    @cities = City.all
+    erb :"/cities/index"
   end
 
   # GET: /cities/new
