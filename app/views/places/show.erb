@@ -2,7 +2,11 @@
 <h1><%= @place.name %></h1>
 <p>City: <%= @place.city %></p>
 <p>Country: <%= @place.country %></p>
-<p>User(s) who visited: <%= User.find_by(id: @place.user_ids).name %></p>
+<p>User(s) who visited:</p>
+<% @place.users.each do |user| %>
+  <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>
+<% end %>
+<br>
 <a href="/places/<%= @place.id %>/edit">Edit place</a>
 <form method ="POST" action="/places/<%= @place.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
