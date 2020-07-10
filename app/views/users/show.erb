@@ -7,5 +7,17 @@
   <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>
 <% end %>
 </ol>
+<h3>Cities visited by <%= @user.name %></h2>
+<ol>
+<% @user.cities.each do |city| %>
+  <li><a href="/cities/<%= city.id %>"><%= city.name %></a></li>
+<% end %>
+</ol>
+<h3>Countries visited by <%= @user.name %></h2>
+<ol>
+<% @user.countries.each do |country| %>
+  <li><a href="/countries/<%= country.id %>"><%= country.name %></a></li>
+<% end %>
+</ol>
 
 <br>
