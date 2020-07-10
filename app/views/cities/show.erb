@@ -1,4 +1,4 @@
-<h1><%= @city.name %></h1>
+<h1><%= @city.name %>, <%= @city.country.name %></h1>
 <ol>
 <% @city.places.each do |place| %>
   <li><a href="/places/<%= place.id %>"><%= place.name %></a></li>

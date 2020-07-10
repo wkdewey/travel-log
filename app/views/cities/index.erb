@@ -1,7 +1,7 @@
 <h1>View all cities</h1>
 <ol>
 <% @cities.each do |city| %>
-  <li><a href="/cities/<%= city.id %>"><%= city.name %></a></li>
+  <li><a href="/cities/<%= city.id %>"><%= city.name %>, <%= city.country.name %></a></li>
 <% end %>
 </ol>
 <br>
