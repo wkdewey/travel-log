@@ -23,9 +23,12 @@
         <% end %>
         <%= yield %>
         <% if logged_in? %>
-          <a href="/places/new">Create a new place</a>
+          <hr>
+          <a href="/places/new">Create a new place</a><br>
           <a href="/places">View all places</a>
-          <a href="/users">View all users</a><br>
+          <a href="/users">View all users</a>
+          <a href="/countries">View all countries</a>
+          <a href="/cities">View all cities</a><br>
           <a href="/users/<%= session[:user_id] %>">View your profile and places</a>
           <a href="/users/<%= session[:user_id] %>/edit">Edit your profile and places</a><br>
           <a href="/logout">Log out </a>
