@@ -6,5 +6,7 @@ end
 
 use Rack::MethodOverride
 run ApplicationController
+use CitiesController
+use CountriesController
 use PlacesController
 use UsersController
