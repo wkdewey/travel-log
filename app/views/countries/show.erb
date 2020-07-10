@@ -1,7 +1,13 @@
 <h1><%= @country.name %></h1>
+<h3>Cities</h3>
 <ol>
 <% @country.cities.each do |city| %>
   <li><a href="/cities/<%= city.id %>"><%= city.name %></a></li>
 <% end %>
 </ol>
+<h3>Visitors</h3>
+<% @country.users.each do |user| %>
+  <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>
+<% end %>
+<p><Number of visitors: <%= @country.users.count %></p>
 <br>
