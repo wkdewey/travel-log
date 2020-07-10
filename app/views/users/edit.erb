@@ -10,13 +10,8 @@
   <input type="checkbox" name="user[place_ids][]" id="<%= place.id %>" value="<%= place.id %>" <%='checked' if @user.places.include?(place) %>><%= place.name %></input><br>
 <% end %>
 <input type="submit" name="submit" id="submit">
-
-
-
-<form>
-<input id="hidden" type=
 </form>
-
+<h3>Delete your account</h3>
 <form method ="POST" action="/users/<%= @user.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" id="delete" value="Delete User">
