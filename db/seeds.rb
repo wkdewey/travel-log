@@ -9,7 +9,12 @@ require "faker"
   place_country = Faker::Address.country
   place_id = i + 1
   user_id = rand(1..10)
+  country = Country.create(name: place_country)
+  country_id = country.id
+  city = City.create(name: place_city, country_id: country_id)
+  city_id = city.id
+  binding.pry
+  Place.create(name: place_name, city_id: city_id)
   User.create(name: user_name, hometown: user_hometown, password: user_password)
-  Place.create(name: place_name, city: place_city, country: place_country)
   UserPlace.create(user_id: user_id, place_id: place_id)
 end
