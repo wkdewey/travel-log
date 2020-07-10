@@ -1,7 +1,8 @@
 
+<binding.pry>
 <h1><%= @place.name %></h1>
-<p>City: <%= @place.city %></p>
-<p>Country: <%= @place.country %></p>
+<p>City: <%= @place.city.name %></p>
+<p>Country: <%= @place.city.country.name %></p>
 <p>User(s) who visited:</p>
 <% @place.users.each do |user| %>
   <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>

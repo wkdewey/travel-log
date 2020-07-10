@@ -23,6 +23,7 @@ class PlacesController < ApplicationController
   get "/places/:id" do
     if logged_in?
       @place = Place.find_by(id: params[:id])
+      binding.pry
       erb :"/places/show"
     else
       login_error
@@ -61,7 +62,6 @@ class PlacesController < ApplicationController
     place.name = params[:name]
     place.city = params[:city]
     place.country = params[:country]
-    binding.pry
     if place.save
       redirect "/places/#{place.id}"
     else

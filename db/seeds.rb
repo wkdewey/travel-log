@@ -13,7 +13,6 @@ require "faker"
   country_id = country.id
   city = City.create(name: place_city, country_id: country_id)
   city_id = city.id
-  binding.pry
   Place.create(name: place_name, city_id: city_id)
   User.create(name: user_name, hometown: user_hometown, password: user_password)
   UserPlace.create(user_id: user_id, place_id: place_id)
