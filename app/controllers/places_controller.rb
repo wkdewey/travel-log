@@ -23,7 +23,6 @@ class PlacesController < ApplicationController
   get "/places/:id" do
     if logged_in?
       @place = Place.find_by(id: params[:id])
-      binding.pry
       erb :"/places/show"
     else
       login_error
@@ -60,10 +59,11 @@ class PlacesController < ApplicationController
 
   # PATCH: /places/5
   patch "/places/:id" do
+    country = Country.find_or_create_by(name: params[:country])
+    city = City.find_or_create_by(name: params[:city], country_id: country.id)
     place = Place.find_by(id: params[:id])
     place.name = params[:name]
-    place.city = params[:city]
-    place.country = params[:country]
+    place.city_id = city.id
     if place.save
       redirect "/places/#{place.id}"
     else

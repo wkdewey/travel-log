@@ -1,13 +1,13 @@
-<% binding.pry %>
+
 <h1>Edit place</h1>
 <form action='/places/<%= @place.id %>' method="post">
 <input id="hidden" type="hidden" name="_method" value="patch">
 <label for="name">Edit Name:
 <input type="text" name="name" id="name" value="<%= @place.name %>"></input><br>
 <label for="city">Edit City:
-<input type="text" name="city" id="city" value="<%= @place.city %>"></input><br>
+<input type="text" name="city" id="city" value="<%= @place.city.name %>"></input><br>
 <label for="country">Edit Country:
-<input type="text" name="country" id="country" value="<%= @place.city.country %>"></input><br>
+<input type="text" name="country" id="country" value="<%= @place.city.country.name %>"></input><br>
 <input type="submit" name="submit" id="submit">
 
 
