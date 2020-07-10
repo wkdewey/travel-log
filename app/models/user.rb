@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
   has_many :user_places
   has_many :places, through: :user_places
   validates :name, uniqueness: true
-  validates :name, :password, presence: true
+  validates :name, :password_digest, presence: true
 end

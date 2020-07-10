@@ -35,7 +35,7 @@ class PlacesController < ApplicationController
     @place = Place.find_by(id: params[:id])
     if !logged_in?
       login_error
-    elsif !@place.user_id.include?(current_user.id)
+    elsif !@place.user_ids.include?(current_user.id)
       flash[:error] = "You can only edit places that you created"
       redirect "/places/#{@place.id}"
     else
@@ -61,6 +61,7 @@ class PlacesController < ApplicationController
     place.name = params[:name]
     place.city = params[:city]
     place.country = params[:country]
+    binding.pry
     if place.save
       redirect "/places/#{place.id}"
     else
@@ -72,7 +73,7 @@ class PlacesController < ApplicationController
   # DELETE: /places/5/delete
   delete "/places/:id" do
     place = Place.find_by(id: params[:id])
-    if  place.user_ids.include?(current_user.id)
+    if place.user_ids.include?(current_user.id)
       place.destroy
       redirect "/places"
     end
