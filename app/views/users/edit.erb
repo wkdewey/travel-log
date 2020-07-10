@@ -1,16 +1,24 @@
 <h1>Edit your user profile</h1>
 <form action='/users/<%= @user.id %>' method="post">
 <input id="hidden" type="hidden" name="_method" value="patch">
-<label for="name">Edit Name:
+<label for="name">Edit Name:</label>
 <input type="text" name="name" id="name" value="<%= @user.name %>"></input><br>
-<label for="hometown">Edit Hometown:
+<label for="hometown">Edit Hometown:</label>
 <input type="text" name="hometown" id="hometown" value="<%= @user.hometown %>"></input><br>
-<label for="password">Edit Password:
+<label for="password">Edit Password:</label>
 <input type="text" name="password" id="password" value="<%= @user.password %>"></input><br>
+<h3>Select a place</h3>
+<% @places.each do |place| %>
+  <input type="checkbox" name="user[place_id]" id="<%= place.id %>" value="<%= place.id %>" <%='checked' if @user.places.include?(place) %>><%= place.name %></input><br>
+<% end %>
 <input type="submit" name="submit" id="submit">
 
 
+
+<form>
+<input id="hidden" type=
 </form>
+
 <form method ="POST" action="/users/<%= @user.id %>">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <input type="submit" id="delete" value="Delete User">

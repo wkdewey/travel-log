@@ -39,6 +39,7 @@ class UsersController < ApplicationController
   # GET: /users/5/edit
   get "/users/:id/edit" do
     @user = User.find_by(id: params[:id])
+    @places = Place.all
     if !logged_in?
       login_error
     elsif current_user != @user  
