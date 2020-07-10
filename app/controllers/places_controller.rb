@@ -46,8 +46,11 @@ class PlacesController < ApplicationController
   # POST: /places
 
   post "/places" do
-    place = Place.new(name: params[:name], city: params[:city], country: params[:country])
+    country = Country.create(name: params[:county])
+    city = City.create(name: params[:city])
+    place = Place.new(name: params[:name], city_id: city.id)
     place.user_ids = current_user.id
+    binding.pry
     if place.save
       redirect "/places"
     else
