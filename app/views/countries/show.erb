@@ -6,8 +6,8 @@
 <% end %>
 </ol>
 <h3>Visitors</h3>
-<% @country.users.each do |user| %>
+<% @country.users.distinct.each do |user| %>
   <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>
 <% end %>
-<p><Number of visitors: <%= @country.users.count %></p>
+<p>Number of visitors: <%= @country.users.distinct.count %></p>
 <br>

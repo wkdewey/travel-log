@@ -8,8 +8,8 @@
 <h3>Visitors</h3>
 <br>
 
-<% @city.users.each do |user| %>
+<% @city.users.distinct.each do |user| %>
   <li><a href="/users/<%= user.id %>"><%= user.name %></a></li>
 <% end %>
-<p>Number of visitors: <%= @city.users.count %></p>
+<p>Number of visitors: <%= @city.users.distinct.count %></p>
 <br>
