@@ -21,10 +21,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # POST: /users This route is not applicable to this program
-  # post "/users" do
-  #   redirect "/users"
-  # end
 
   # GET: /users/:id
   get "/users/:id" do

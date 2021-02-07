@@ -80,6 +80,9 @@ class PlacesController < ApplicationController
     if place.user_ids.include?(current_user.id)
       place.destroy
       redirect "/places"
+    else
+      flash[:error] = "You can only delete your own places"
+      redirect "/places"
     end
   end
 end
